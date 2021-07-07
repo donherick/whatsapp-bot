@@ -1,9 +1,16 @@
+.env
+
 dist
 node_modules
-
-.env
 
 yarn.lock
 
 public/images/*
 !public/images/.gitkeep
+
+src/data/session.json
+!src/data/.gitkeep
+
+src/config/integrantes.json
+
+.idea

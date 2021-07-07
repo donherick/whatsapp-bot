@@ -1,22 +1,7 @@
-import { client } from "./server";
+import { client } from './services/whatsapp';
+import type { Message } from 'whatsapp-web.js';
+import dispatchCommand from './app/commands';
 
-import EconomiaController from "./app/controllers/EconomiaController";
-import PassagemController from "./app/controllers/PassagemController";
-import CompanyController from "./app/controllers/CompanyController";
-
-client.on("message", async (message: any) => {
-  switch (message.body) {
-    /** Exclusive command for 76Telecom company */
-    case "!turno":
-      await PassagemController(message);
-      break;
-
-    case "!company":
-      await CompanyController(message);
-      break;
-
-    case "!cotacao":
-      await EconomiaController(message);
-      break;
-  }
+client.on('message', (message: Message) => {
+  if (message.body.startsWith('!')) return dispatchCommand(message);
 });
